@@ -1,0 +1,183 @@
+diff -up dwm-5.2-original/colorstatus.c dwm-5.2-modified/colorstatus.c
+--- /dev/null	2008-11-17 18:12:14.000000000 +0100
++++ dwm-5.2-modified/colorstatus.c	2008-11-17 18:09:29.000000000 +0100
+@@ -0,0 +1,144 @@
++int
++drawstatustext(int x) {
++	char cd[] = "[c]", id[] = "[i]";
++	char buf1[256] = {0};
++	Bool parse = True;
++	Bool cs = False, is = False;
++	int stextw = 0;
++	
++	strcpy(buf1, stext);
++	while(parse) {
++		char *cp = 0, *ip = 0;
++		
++		cp = strstr(buf1, cd);
++		ip = strstr(buf1, id);
++		if(cp != NULL || ip != NULL) {
++			char buf2[256] = {0}, buf3[256] = {0};
++			size_t clen2 = -1, ilen2 = -1, len2 = 0, dlen = 0, offset3 = 0, len3 = 0;
++			
++			if(cp != NULL)
++				clen2 = cp - buf1;
++			if(ip != NULL)
++				ilen2 = ip - buf1;
++			if(clen2 < 0) {
++				len2 = ilen2;
++				dlen = strlen(id);
++			}
++			else if(ilen2 < 0) {
++				len2 = clen2;
++				dlen = strlen(cd);
++			}
++			else if(clen2 < ilen2) {
++				len2 = clen2;
++				dlen = strlen(cd);
++			}
++			else {
++				len2 = ilen2;
++				dlen = strlen(id);
++			}
++			strncpy(buf2, buf1, len2);
++			offset3 = len2 + dlen;
++			len3 = strlen(buf1) - offset3;
++			strncpy(buf3, buf1 + offset3, len3);
++			if(buf2 != NULL && strlen(buf2) > 0)
++				stextw = stextw + TEXTW(buf2);
++			
++			memset(buf1, '\0', sizeof(buf1));
++			strcpy(buf1, buf3);
++		}
++		else {
++			stextw = stextw + TEXTW(buf1);
++			parse = False;
++		}
++	}
++	dc.x = ww - stextw;
++	
++	memset(buf1, '\0', sizeof(buf1));
++	strcpy(buf1, stext);
++	parse = True;
++	while(parse) {
++		char *cp = 0, *ip = 0;
++		
++		cp = strstr(buf1, cd);
++		ip = strstr(buf1, id);
++		if(cp != NULL || ip != NULL) {
++			char buf2[256] = {0}, buf3[256] = {0};
++			size_t clen2 = -1, ilen2 = -1, len2 = 0, dlen = 0, offset3 = 0, len3 = 0;
++			Bool cs3 = cs, is3 = is;
++			
++			if(cp != NULL)
++				clen2 = cp - buf1;
++			if(ip != NULL)
++				ilen2 = ip - buf1;
++			if(clen2 < 0) {
++				len2 = ilen2;
++				dlen = strlen(id);
++				is3 = !is;
++			}
++			else if(ilen2 < 0) {
++				len2 = clen2;
++				dlen = strlen(cd);
++				cs3 = !cs;
++			}
++			else if(clen2 < ilen2) {
++				len2 = clen2;
++				dlen = strlen(cd);
++				cs3 = !cs;
++			}
++			else {
++				len2 = ilen2;
++				dlen = strlen(id);
++				is3 = !is;
++			}
++			
++			strncpy(buf2, buf1, len2);
++			offset3 = len2 + dlen;
++			len3 = strlen(buf1) - offset3;
++			strncpy(buf3, buf1 + offset3, len3);
++			if(buf2 != NULL && strlen(buf2) > 0) {
++				dc.w = TEXTW(buf2);
++				if(cs) {
++					if(is)
++						drawtext(buf2, dc.sel, True);
++					else
++						drawtext(buf2, dc.sel, False);
++				}
++				else {
++					if(is)
++						drawtext(buf2, dc.norm, True);
++					else
++						drawtext(buf2, dc.norm, False);
++				}
++				dc.x = dc.x + dc.w;
++			}
++			
++			cs = cs3;
++			is = is3;
++			memset(buf1, '\0', sizeof(buf1));
++			strcpy(buf1, buf3);
++		}
++		else {
++			dc.w = TEXTW(buf1);
++			dc.x = ww - dc.w;
++			if(dc.x < x) {
++				dc.x = x;
++				dc.w = ww - x;
++			}
++			if(cs) {
++				if(is)
++					drawtext(buf1, dc.sel, True);
++				else
++					drawtext(buf1, dc.sel, False);
++			}
++			else {
++				if(is)
++					drawtext(buf1, dc.norm, True);
++				else
++					drawtext(buf1, dc.norm, False);
++			}
++			parse = False;
++		}
++	}
++	
++	return(stextw);
++}
+diff -up dwm-5.2-original/dwm.c dwm-5.2-modified/dwm.c
+--- dwm-5.2-original/dwm.c	2008-09-09 21:46:17.000000000 +0200
++++ dwm-5.2-modified/dwm.c	2008-11-17 18:09:29.000000000 +0100
+@@ -239,6 +239,7 @@ static Layout *lt[] = { NULL, NULL };
+ static Window root, barwin;
+ /* configuration, allows nested code to access above variables */
+ #include "config.h"
++#include "colorstatus.c"
+ 
+ /* compile-time check if all tags fit into an unsigned int bit array. */
+ struct NumTags { char limitexceeded[sizeof(unsigned int) * 8 < LENGTH(tags) ? -1 : 1]; };
+@@ -495,6 +496,7 @@ drawbar(void) {
+ 	unsigned int i, occ = 0, urg = 0;
+ 	unsigned long *col;
+ 	Client *c;
++	int stextw = 0;
+ 
+ 	for(c = clients; c; c = c->next) {
+ 		occ |= c->tags;
+@@ -517,13 +519,8 @@ drawbar(void) {
+ 	}
+ 	else
+ 		x = dc.x;
+-	dc.w = TEXTW(stext);
+-	dc.x = ww - dc.w;
+-	if(dc.x < x) {
+-		dc.x = x;
+-		dc.w = ww - x;
+-	}
+-	drawtext(stext, dc.norm, False);
++	stextw = drawstatustext(x);
++	dc.x = ww - stextw;
+ 	if((dc.w = dc.x - x) > bh) {
+ 		dc.x = x;
+ 		if(sel) {
