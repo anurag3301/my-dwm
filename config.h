@@ -1,4 +1,5 @@
 /* See LICENSE file for copyright and license details. */
+#include <X11/XF86keysym.h>
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -59,6 +60,25 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
+static const char *web[] = {"brave", NULL};
+
+static const char *mute[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
+static const char *volup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
+static const char *voldown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+
+static const char *play_pause_spotify[] = { "playerctl", "play-pause", "-p", "spotify", NULL};
+static const char *next_spotify[] = { "playerctl", "next","-p", "spotify", NULL};
+static const char *previous_spotify[] = { "playerctl", "previous","-p", "spotify", NULL};
+
+static const char *play_pause[] = { "playerctl", "play-pause", "-i", "spotify", NULL};
+static const char *next[] = { "playerctl", "next","-i", "spotify", NULL};
+static const char *previous[] = { "playerctl", "previous","-i", "spotify", NULL};
+
+static const char *kitty[] = {"kitty", NULL};
+static const char *audio[] = {"/home/anurag/.program/audio.sh", NULL};
+static const char *code[] = {"code", NULL};
+
+const char screensot_script[] = "var=~/Pictures/$(date '+%d-%m-%y-%H_%M_%S').png; maim -s -m 10 $var; cat $var | xclip -selection clipboard -t image/png;";
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -73,7 +93,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_x,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
@@ -95,6 +115,20 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ 0, 		XF86XK_AudioMute, 	    spawn,         {.v = mute } },
+	{ 0, 		XF86XK_AudioLowerVolume,    spawn, 	   {.v = voldown } },
+	{ 0, 		XF86XK_AudioRaiseVolume,    spawn, 	   {.v = volup } },
+	{ 0, 		XF86XK_AudioPlay,           spawn, 	   {.v = play_pause_spotify } },
+	{ 0, 		XF86XK_AudioPrev,           spawn, 	   {.v = previous_spotify } },
+	{ 0, 		XF86XK_AudioNext,           spawn, 	   {.v = next_spotify } },
+	{ ShiftMask, 	XF86XK_AudioPlay,           spawn, 	   {.v = play_pause } },
+	{ ShiftMask, 	XF86XK_AudioPrev,           spawn, 	   {.v = previous } },
+	{ ShiftMask, 	XF86XK_AudioNext,           spawn, 	   {.v = next } },
+	{ MODKEY,       XK_space,                   spawn,         {.v = kitty} }, 
+	{ 0,            XK_Print,                   spawn,         SHCMD(screensot_script)},
+	{ 0,            XK_F8,                      spawn,         {.v = audio} },
+        { MODKEY,                       XK_w,       spawn,          {.v = web }},
+	{ MODKEY,                       XK_c,       spawn,         {.v = code}}, 
 };
 
 /* button definitions */
