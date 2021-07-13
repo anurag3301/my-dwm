@@ -20,6 +20,9 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
+/* staticstatus */
+static const int statmonval = 0;
+
 /* tagging */
 static const char *tags[] = { " ", " ", "ﭮ " , " ", "嗢 ", " ",};
 
