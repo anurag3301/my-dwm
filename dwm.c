@@ -727,25 +727,43 @@ drawbar(Monitor *m)
 	unsigned int i, occ = 0, urg = 0;
 	char *ts = stext;
 	char *tp = stext;
+    
 	int tx = 0;
 	char ctmp;
+
 	Client *c;
+	/* correction for colours */
+ 	int correct = 0; 
+	char *xcape = malloc (sizeof (char) * 128);
+	memset(xcape,0,sizeof (char) * 128);
+	for ( ; *ts != '\0' ; ts++) {    
+		if (*ts <= LENGTH(colors)) {
+			sprintf(xcape,"%c",*ts);
+			correct += TEXTW(xcape) - lrpad;
+		}
+	}
+	free(xcape);
+	ts = stext;
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == statmon) { /* status is only drawn on user-defined status monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
-		tw = TEXTW(stext);
+		tw = TEXTW(stext) - lrpad + 2 - correct; /* 2px right padding and correction for escape sequences*/
 		while (1) {
-		if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
+			if ( (unsigned int) *ts > LENGTH(colors) ) { 
+				ts++;
+				continue; 
+			}
 			ctmp = *ts;
 			*ts = '\0';
 			drw_text(drw, m->ww - tw + tx, 0, tw - tx, bh, 0, tp, 0);
-			tx += TEXTW(tp) -lrpad;
+			tx += TEXTW(tp) - lrpad;
 			if (ctmp == '\0') { break; }
 			drw_setscheme(drw, scheme[(unsigned int)(ctmp-1)]);
 			*ts = ctmp;
 			tp = ++ts;
 		}
+
 	}
 
 	for (c = m->clients; c; c = c->next) {
