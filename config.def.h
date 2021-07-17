@@ -8,8 +8,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const int horizpadbar        = 0;        /* horizontal padding for statusbar */
-static const int vertpadbar         = 5;        /* vertical padding for statusbar */
-static const char *fonts[]          = {"JetBrainsMono Nerd Font:size14"};
+static const int vertpadbar         = 7;        /* vertical padding for statusbar */
+static const char *fonts[]          = {"JetBrainsMono Nerd Font:size15"};
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=12";
 static const char col_gray1[]       = "#282a36";
 static const char col_gray2[]       = "#282a36";
@@ -39,7 +39,7 @@ static const char *colors[][3]      = {
 static const int statmonval = 0;
 
 /* tagging */
-static const char *tags[] = { " ", " ", "ﭮ " , " ", "嗢 ", " ",};
+static const char *tags[] = { " ", " ", " ", " ", "ﭮ ", " ", " ",};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -47,9 +47,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "discord",  NULL,       NULL,       1 << 2,       0,            0 },
-	{ "Spotify",  NULL,       NULL,       1 << 3,       0,            0 },
-	{ "TelegramDesktop",NULL, NULL,       1 << 5,       0,            0 },
+	{ "discord",  NULL,       NULL,       1 << 4,       0,            0 },
+	{ "Spotify",  NULL,       NULL,       1 << 5,       0,            0 },
+	{ "TelegramDesktop",NULL, NULL,       1 << 6,       0,            0 },
 };
 
 /* layout(s) */
