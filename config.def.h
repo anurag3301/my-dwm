@@ -18,11 +18,13 @@ static const char col_gray4[]       = "#d7d7d7";
 static const char col_cyan[]        = "#282a36";
 static const char col_black[]       = "#000000";
 static const char col_white[]       = "#ffffff";
-static const char col_red[]         = "#bd1b0f";
-static const char col_yellow[]      = "#bab10d";
+static const char col_red[]         = "#eb3449";
+static const char col_yellow[]      = "#ffee75";
 static const char col_green[]       = "#a3be8c";
 static const char col_orange[]      = "#d08770";
 static const char col_purple[]      = "#b48ead";
+static const char col_pink[]        = "#ffafbc";
+static const char col_blue[]        = "#88c0d0";
 
 static const char *colors[][3]      = {
 	/*					fg         bg          border   */
@@ -33,6 +35,8 @@ static const char *colors[][3]      = {
     [SchemeOrange] = { col_orange, col_gray1,  col_gray2 },
     [SchemeGreen]  = { col_green,  col_gray1,  col_gray2 },
     [SchemePurple] = { col_purple, col_gray1,  col_gray2 },
+    [SchemePink]   = { col_pink,   col_gray1,  col_gray2 },
+    [Schemeblue]   = { col_blue,   col_gray1,  col_gray2 }
 };
 
 /* staticstatus */
