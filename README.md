@@ -3,7 +3,7 @@
 Learn more about DWM on the [suckless's wesite](https://dwm.suckless.org/)
 
 ## This is How my desktop looks like
-![screenshot](https://user-images.githubusercontent.com/52702259/124374198-dd4e8000-dcb6-11eb-97f8-dd046e12d6e0.png)
+![screenshot](https://user-images.githubusercontent.com/52702259/126026939-0f8f33a0-914c-4308-b40a-e2107933375f.png)
 
 Check out my rest linux config in this [Github Repo](https://github.com/anurag3301/my-linux-setup)
 
