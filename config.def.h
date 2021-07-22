@@ -50,10 +50,10 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "discord",  NULL,       NULL,       1 << 4,       0,            0 },
-	{ "Spotify",  NULL,       NULL,       1 << 5,       0,            0 },
-	{ "TelegramDesktop",NULL, NULL,       1 << 6,       0,            0 },
+	/* class      instance    title       tags mask     isfloating    centerThisWindow?   monitor */
+	{ "discord",  NULL,       NULL,       1 << 4,       0,            0,                  0 },
+	{ "Spotify",  NULL,       NULL,       1 << 5,       0,            0,                  0 },
+	{ "TelegramDesktop",NULL, NULL,       1 << 6,       0,            0,                  0 },
 };
 
 /* layout(s) */
