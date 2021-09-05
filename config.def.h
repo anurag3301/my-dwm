@@ -43,7 +43,7 @@ static const char *colors[][3]      = {
 static const int statmonval = 0;
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", " ", "ﭮ ", " ", " ",};
+static const char *tags[] = { " ", " ", " ", " ", " ", "ﭮ ", " "};
 
 static const Rule rules[] = {
   /* xprop(1):
@@ -51,9 +51,8 @@ static const Rule rules[] = {
    *  WM_NAME(STRING) = title
    */
   /* class      instance    title       tags mask     isfloating    centerThisWindow?   monitor */
-  { "discord",  NULL,       NULL,       1 << 4,       0,            0,                  0 },
-  { "Spotify",  NULL,       NULL,       1 << 5,       0,            0,                  0 },
-  { "TelegramDesktop",NULL, NULL,       1 << 6,       0,            0,                  0 },
+  { "discord",  NULL,       NULL,       1 << 5,       0,            0,                  0 },
+  { "Spotify",  NULL,       NULL,       1 << 6,       0,            0,                  0 },
 };
 
 /* layout(s) */
