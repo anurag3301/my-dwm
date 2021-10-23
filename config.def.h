@@ -98,6 +98,7 @@ static const char *previous[] = { "playerctl", "previous","-i", "spotify", NULL}
 
 static const char *kitty[] = {"kitty", NULL};
 static const char *audio[] = {"/home/anurag/.program/audio.sh", NULL};
+static const char *colpick[] = {"/home/anurag/.program/colpick.sh", NULL};
 static const char *code[] = {"code", NULL};
 
 const char screensot_script[] = "var=~/pix/$(date '+%d-%m-%y-%H_%M_%S').png; maim -s -u -m 10 $var; cat $var | xclip -selection clipboard -t image/png;";
@@ -148,6 +149,7 @@ static Key keys[] = {
   { MODKEY,       XK_space,                  spawn,          {.v = kitty} },
   { 0,            XK_Print,                  spawn,          SHCMD(screensot_script)},
   { 0,            XK_F8,                     spawn,          {.v = audio} },
+  { ControlMask|ShiftMask,        XK_c,      spawn,          {.v = colpick} },
   { MODKEY,                       XK_w,      spawn,          {.v = web }},
   { MODKEY,                       XK_c,      spawn,          {.v = code}},
 };
