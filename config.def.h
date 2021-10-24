@@ -18,13 +18,13 @@ static const char col_gray4[]       = "#d7d7d7";
 static const char col_cyan[]        = "#282a36";
 static const char col_black[]       = "#000000";
 static const char col_white[]       = "#ffffff";
-static const char col_red[]         = "#eb3449";
+static const char col_red[]         = "#ff5370";
 static const char col_yellow[]      = "#ffee75";
-static const char col_green[]       = "#a3be8c";
-static const char col_orange[]      = "#d08770";
-static const char col_purple[]      = "#b48ead";
-static const char col_pink[]        = "#ffafbc";
-static const char col_blue[]        = "#88c0d0";
+static const char col_green[]       = "#c3e88d";
+static const char col_orange[]      = "#f07178";
+static const char col_purple[]      = "#c792ea";
+static const char col_pink[]        = "#FD9CAC";
+static const char col_blue[]        = "#89ddff";
 
 static const char *colors[][3]      = {
   /*          fg         bg          border   */
