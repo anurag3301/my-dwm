@@ -149,7 +149,7 @@ static Key keys[] = {
   { MODKEY,       XK_space,                  spawn,          {.v = kitty} },
   { 0,            XK_Print,                  spawn,          SHCMD(screensot_script)},
   { 0,            XK_F8,                     spawn,          {.v = audio} },
-  { ControlMask|ShiftMask,        XK_c,      spawn,          {.v = colpick} },
+  { ControlMask|MODKEY,           XK_c,      spawn,          {.v = colpick} },
   { MODKEY,                       XK_w,      spawn,          {.v = web }},
   { MODKEY,                       XK_c,      spawn,          {.v = code}},
 };
