@@ -40,7 +40,7 @@ static const char *colors[][3]      = {
 };
 
 /* staticstatus */
-static const int statmonval = 0;
+static const int statmonval = 1;
 
 /* tagging */
 static const char *tags[] = { " ", " ", " ", " ", " ", "ﭮ ", " "};
@@ -51,8 +51,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-  { "discord",  NULL,       NULL,       1 << 5,       0,            0},
-  { "Spotify",  NULL,       NULL,       1 << 6,       0,            0},
+  { "discord",  NULL,       NULL,       1 << 5,       0,            1},
+  { "Spotify",  NULL,       NULL,       1 << 6,       0,            1},
 };
 
 /* layout(s) */
