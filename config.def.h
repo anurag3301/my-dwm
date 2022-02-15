@@ -9,7 +9,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel       = 0;
 static const int horizpadbar        = 0;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 7;        /* vertical padding for statusbar */
-static const char *fonts[]          = {"JetBrainsMono Nerd Font:size15"};
+static const char *fonts[]          = {"JetBrainsMono Nerd Font:size=11"};
 static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=12";
 static const char col_gray1[]       = "#282a36";
 static const char col_gray2[]       = "#282a36";
