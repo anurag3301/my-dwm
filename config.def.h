@@ -53,9 +53,9 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-  { "Binance",  NULL,       NULL,       1 << 5,       0,            0},
+  { "Binance",  NULL,       NULL,       1 << 5,       0,            1},
   { "discord",  NULL,       NULL,       1 << 6,       0,            0},
-  { "Spotify",  NULL,       NULL,       1 << 7,       0,            0},
+  { "Spotify",  NULL,       NULL,       1 << 7,       0,            1},
 };
 
 /* layout(s) */
