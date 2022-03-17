@@ -104,6 +104,7 @@ static const char *kitty[] = {"kitty", NULL};
 static const char *audio[] = {"/home/anurag/.program/audio.sh", NULL};
 static const char *colpick[] = {"/home/anurag/.program/colpick.sh", NULL};
 static const char *code[] = {"code", NULL};
+static const char *mon_off[] = {"xset", "dpms", "force", "off",  NULL};
 
 const char screensot_script[] = "var=~/pix/$(date '+%d-%m-%y-%H_%M_%S').png; maim -s -u -m 10 $var; cat $var | xclip -selection clipboard -t image/png; notify-send 'Screenshot captured' -t 3000 -i \"$var\"";
 
@@ -156,6 +157,7 @@ static Key keys[] = {
   { ControlMask|MODKEY,           XK_c,      spawn,          {.v = colpick} },
   { MODKEY,                       XK_w,      spawn,          {.v = web }},
   { MODKEY,                       XK_c,      spawn,          {.v = code}},
+  { ControlMask,                  XK_F1,     spawn,          {.v = mon_off} },
 };
 
 /* button definitions */
