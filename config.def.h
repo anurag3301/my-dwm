@@ -27,7 +27,6 @@ static const char col_orange[]      = "#f07178";
 static const char col_purple[]      = "#c792ea";
 static const char col_pink[]        = "#FD9CAC";
 static const char col_blue[]        = "#89ddff";
-static const char col_urgborder[]   = "#ff0000";
 
 static const char *colors[][3]      = {
   /*          fg         bg          border   */
@@ -41,7 +40,6 @@ static const char *colors[][3]      = {
     [SchemePink]   = { col_pink,   col_gray1,  col_gray2 },
     [Schemeblue]   = { col_blue,   col_gray1,  col_gray2 },
     [SchemeDarkRed]= { col_darkred,col_gray1,  col_gray2 },
-	[SchemeUrg]  = { col_gray4, col_cyan,  col_urgborder  },
 };
 
 /* staticstatus */

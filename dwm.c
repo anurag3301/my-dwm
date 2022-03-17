@@ -63,8 +63,7 @@
 /* enums */
 enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
 enum { SchemeNorm, SchemeSel, SchemeRed, SchemeYellow, SchemeOrange, 
-       SchemeGreen, SchemePurple, SchemePink, Schemeblue, SchemeDarkRed,
-       SchemeUrg}; /* color schemes */
+       SchemeGreen, SchemePurple, SchemePink, Schemeblue, SchemeDarkRed}; /* color schemes */
 enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
@@ -2110,8 +2109,6 @@ updatewmhints(Client *c)
 			XSetWMHints(dpy, c->win, wmh);
 		} else {
 			c->isurgent = (wmh->flags & XUrgencyHint) ? 1 : 0;
-			if (c->isurgent)
-				XSetWindowBorder(dpy, c->win, scheme[SchemeUrg][ColBorder].pixel);
         }
 		if (wmh->flags & InputHint)
 			c->neverfocus = !wmh->input;
