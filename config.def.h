@@ -53,10 +53,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-  { "Binance",  NULL,       NULL,       1 << 5,       0,            1},
-  { "discord",  NULL,       NULL,       1 << 6,       0,            0},
-  { "Spotify",  NULL,       NULL,       1 << 7,       0,            1},
+	/* class         instance    title       tags mask     isfloating   monitor */
+  { "Binance",         NULL,       NULL,       1 << 5,       0,            1},
+  { "discord",         NULL,       NULL,       1 << 6,       0,            0},
+  { "Spotify",         NULL,       NULL,       1 << 7,       0,            1},
+  { "kdeconnect.app",  NULL,       NULL,       1 << 6,       0,            1},
+  { "Element",         NULL,       NULL,       1 << 4,       0,            1},
 };
 
 /* layout(s) */
