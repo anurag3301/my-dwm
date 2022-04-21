@@ -103,6 +103,7 @@ static const char *next[] = { "playerctl", "next","-i", "spotify", NULL};
 static const char *previous[] = { "playerctl", "previous","-i", "spotify", NULL};
 
 static const char *kitty[] = {"kitty", NULL};
+static const char *xfce_terminal[] = {"xfce4-terminal", NULL};
 static const char *audio[] = {"/home/anurag/.program/audio.sh", NULL};
 static const char *colpick[] = {"/home/anurag/.program/colpick.sh", NULL};
 static const char *code[] = {"code", NULL};
@@ -158,6 +159,7 @@ static Key keys[] = {
   { ShiftMask,    XF86XK_AudioPrev,          spawn,          {.v = previous } },
   { ShiftMask,    XF86XK_AudioNext,          spawn,          {.v = next } },
   { MODKEY,       XK_space,                  spawn,          {.v = kitty} },
+  { ControlMask|ShiftMask, XK_space,         spawn,          {.v = xfce_terminal} },
   { 0,            XK_Print,                  spawn,          SHCMD(screensot_script)},
   { 0,            XK_F8,                     spawn,          {.v = audio} },
   { ControlMask|MODKEY,           XK_c,      spawn,          {.v = colpick} },
