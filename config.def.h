@@ -58,6 +58,8 @@ static const Rule rules[] = {
   { "Spotify",         NULL,       NULL,       1 << 7,       0,            1},
   { "kdeconnect.app",  NULL,       NULL,       1 << 6,       0,            1},
   { "Element",         NULL,       NULL,       1 << 5,       0,            1},
+  { "Pavucontrol",     NULL,       NULL,       1 << 7,       0,            0},
+  { "Xournalpp",       NULL,       NULL,       1 << 5,       0,            0},
 };
 
 /* layout(s) */
