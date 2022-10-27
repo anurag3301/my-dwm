@@ -6,6 +6,7 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int focusonwheel       = 0;
 static const int horizpadbar        = 0;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 7;        /* vertical padding for statusbar */
@@ -53,12 +54,12 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance    title       tags mask     isfloating   monitor */
-  { "discord",         NULL,       NULL,       1 << 7,       0,            0},
-  { "Spotify",         NULL,       NULL,       1 << 8,       0,            1},
-  { "kdeconnect.app",  NULL,       NULL,       1 << 7,       0,            1},
-  { "Xournalpp",       NULL,       NULL,       1 << 8,       0,            0},
-  { "thunderbird",     NULL,       NULL,       1 << 6,       0,            1}
+	/* class         instance   title   tags mask   isfloating  isterminal  noswallow  monitor */
+  { "discord",         NULL,    NULL,   1 << 7,     0,           0,          0,         0},
+  { "Spotify",         NULL,    NULL,   1 << 8,     0,           0,          0,         1},
+  { "kdeconnect.app",  NULL,    NULL,   1 << 7,     0,           0,          0,         1},
+  { "Xournalpp",       NULL,    NULL,   1 << 8,     0,           0,          0,         0},
+  { "thunderbird",     NULL,    NULL,   1 << 6,     0,           0,          0,         1}
 };
 
 /* layout(s) */
