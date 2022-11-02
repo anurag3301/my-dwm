@@ -111,6 +111,7 @@ static const char *code[] = {"code", NULL};
 static const char *mon_off[] = {"xset", "dpms", "force", "off",  NULL};
 
 const char screensot_script[] = "var=~/pix/$(date '+%d%m%y%H%M%S').png; maim -s -u -m 10 $var; cat $var | xclip -selection clipboard -t image/png; notify-send 'Screenshot captured' -t 3000 -i \"$var\"";
+const char ocr_script[] = "var=~/pix/$(date '+%d%m%y%H%M%S').png; maim -s -u -m 10 $var; tesseract $var - | xclip -sel clip; notify-send 'Copied Text to Clipboard' -t 3000 -i \"$var\"";
 
 static Key keys[] = {
   /* modifier                     key        function        argument */
@@ -162,6 +163,7 @@ static Key keys[] = {
   { MODKEY,       XK_space,                  spawn,          {.v = kitty} },
   { ControlMask|ShiftMask, XK_space,         spawn,          {.v = xfce_terminal} },
   { 0,            XK_Print,                  spawn,          SHCMD(screensot_script)},
+  { ControlMask,  XK_Print,                  spawn,          SHCMD(ocr_script)},
   { 0,            XK_F8,                     spawn,          {.v = audio} },
   { ControlMask|MODKEY,           XK_c,      spawn,          {.v = colpick} },
   { MODKEY,                       XK_w,      spawn,          {.v = web }},
