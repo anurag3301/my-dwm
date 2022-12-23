@@ -46,7 +46,7 @@ static const char *colors[][3]      = {
 static const int statmonval = 0;
 
 /* tagging */
-static const char *tags[] = { " ", " ", " ", " ", " ", " ", "ﬧ ", "ﭮ ", " "};
+static const char *tags[] = { " ", " ", " ", " ", " ", "ﬧ ", " ", "ﭮ ", " "};
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -55,6 +55,8 @@ static const Rule rules[] = {
 	 */
 	/* class         instance    title       tags mask     isfloating   monitor */
   { "discord",         NULL,       NULL,       1 << 7,       0,            0},
+  { "Steam",           NULL,       NULL,       1 << 6,       0,            0},
+  { "whatsapp-nativefier-d40211",NULL,NULL,    1 << 7,       0,            1},
   { "Spotify",         NULL,       NULL,       1 << 8,       0,            1},
   { "kdeconnect.app",  NULL,       NULL,       1 << 7,       0,            1},
   { "Xournalpp",       NULL,       NULL,       1 << 8,       0,            0},
