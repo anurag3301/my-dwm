@@ -46,22 +46,21 @@ static const char *colors[][3]      = {
 static const int statmonval = 0;
 
 /* tagging */
-// static const char *tags[] = { " ", " ", " ", " ", " ", "ﬧ ", " ", "ﭮ ", " "};
-static const char *tags[] = { "|1|", "|2|", "|3|", "|4|", "|5|", "|6|", "|7|", "|8|", "|9|"};
+static const char *tags[] = { " ", " ", " ", " ", " ", "ﬧ ", " ", "ﭮ ", " "};
 
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance    title       tags mask     isfloating   monitor */
-  { "discord",         NULL,       NULL,       1 << 7,       0,            0},
-  { "Steam",           NULL,       NULL,       1 << 6,       0,            0},
-  { "whatsapp-nativefier-d40211",NULL,NULL,    1 << 7,       0,            1},
-  { "Spotify",         NULL,       NULL,       1 << 8,       0,            1},
-  { "kdeconnect.app",  NULL,       NULL,       1 << 7,       0,            1},
-  { "Xournalpp",       NULL,       NULL,       1 << 8,       0,            0},
-  { "thunderbird",     NULL,       NULL,       1 << 6,       0,            1}
+	/* class         instance    title       tags mask    iscentered    isfloating   monitor */
+  { "discord",         NULL,       NULL,       1 << 7,         0,           0,            0},
+  { "Steam",           NULL,       NULL,       1 << 6,         0,           0,            0},
+  { "whatsapp-nativefier-d40211",NULL,NULL,    1 << 7,         0,           0,            1},
+  { "Spotify",         NULL,       NULL,       1 << 8,         0,           0,            1},
+  { "kdeconnect.app",  NULL,       NULL,       1 << 7,         0,           0,            1},
+  { "Xournalpp",       NULL,       NULL,       1 << 8,         0,           0,            0},
+  { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,            1},
 };
 
 /* layout(s) */
