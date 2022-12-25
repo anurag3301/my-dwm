@@ -54,7 +54,6 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-<<<<<<< Updated upstream
 	/* class         instance    title       tags mask    iscentered    isfloating   isterminal   noswallow   monitor */
   { "discord",         NULL,       NULL,       1 << 7,         0,           0,            0,          0,        0},
   { "Steam",           NULL,       NULL,       1 << 6,         0,           0,            0,          0,        0},
@@ -63,17 +62,6 @@ static const Rule rules[] = {
   { "Xournalpp",       NULL,       NULL,       1 << 8,         0,           0,            0,          0,        0},
   { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,            0,          0,        1},
   { "SFML works!",     NULL,       NULL,       0,              0,           0,            0,          0,        -1}
-=======
-	/* class         instance    title       tags mask    iscentered    isfloating   monitor */
-  { "discord",         NULL,       NULL,       1 << 7,         0,           0,            0},
-  { "Steam",           NULL,       NULL,       1 << 6,         0,           0,            0},
-  { "whatsapp-nativefier-d40211",NULL,NULL,    1 << 7,         0,           0,            1},
-  { "Spotify",         NULL,       NULL,       1 << 8,         0,           0,            1},
-  { "kdeconnect.app",  NULL,       NULL,       1 << 7,         0,           0,            1},
-  { "Xournalpp",       NULL,       NULL,       1 << 8,         0,           0,            0},
-  { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,            1},
-  { "SFML works!",     NULL,       NULL,       0,              1,           1,            -1}
->>>>>>> Stashed changes
 };
 
 /* layout(s) */
