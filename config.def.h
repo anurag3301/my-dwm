@@ -111,6 +111,7 @@ static const char *audio[] = {"/home/anurag/.program/audio.sh", NULL};
 static const char *colpick[] = {"/home/anurag/.program/colpick.sh", NULL};
 static const char *code[] = {"code", NULL};
 static const char *mon_off[] = {"xset", "dpms", "force", "off",  NULL};
+static const char *warp_toggle[] = {"/home/anurag/.program/warp_toggle.sh", NULL};
 
 const char screensot_script[] = "var=~/pix/$(date '+%d%m%y%H%M%S').png; maim -s -u -m 10 $var; if [[ -f $var ]]; then cat $var | xclip -selection clipboard -t image/png; notify-send 'Screenshot captured' -t 3000 -i \"$var\"; fi;";
 const char ocr_script[] = "var=~/pix/$(date '+%d%m%y%H%M%S').png; maim -s -u -m 10 $var; if [[ -f $var ]]; then tesseract $var - | xclip -sel clip; notify-send 'Copied Text to Clipboard' -t 3000 -i \"$var\"; fi;";
@@ -171,6 +172,7 @@ static Key keys[] = {
   { MODKEY,                       XK_w,      spawn,          {.v = web }},
   { MODKEY,                       XK_c,      spawn,          {.v = code}},
   { ControlMask,                  XK_F1,     spawn,          {.v = mon_off} },
+  { MODKEY|ShiftMask,             XK_w,      spawn,          {.v = warp_toggle}},
 };
 
 /* button definitions */
