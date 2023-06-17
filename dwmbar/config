@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # What modules, in what order
-MODULES="song miner_check cpuload volume ram cputemp nvidia_gpu_temp time date"
+MODULES="song warp_check cpuload volume ram cputemp nvidia_gpu_temp time date"
 
 # Modules that require an active internet connection
 ONLINE_MODULES="weather internet"
 
 # Delay between showing the status bar
-DELAY="0.05"
+DELAY="0.1"
 
 # Where the custom modules are stored
 CUSTOM_DIR="/home/$USER/.config/dwmbar/modules/custom/"

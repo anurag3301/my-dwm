@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cross=" "
+tick=" "
+connecting=" "
+
+warp_status="$(timeout 1 warp-cli status | head -1 | awk '{print $3}' 2> /dev/null)"
+
+get_warp_info(){
+    if [ "$warp_status" == "Connected" ]; then
+        # echo "Warp connected"
+        printf "\x06%sWarp\x01\\n" "$tick"
+    elif [ "$warp_status" == "Disconnected." ]; then
+       # echo "Warp disconnected"
+       printf "\x0a%sWarp\x01\\n" "$cross"
+    else
+       printf "\x04%sWarp\x01\\n" "$connecting"
+    fi
+}
+
+get_warp_info
