@@ -4,7 +4,7 @@
 # Dependencies: lm_sensors
 
 PREFIX=' '
-FIRE=' '
+FIRE='󱗗 '
 
 WARNING_LEVEL=80
 
