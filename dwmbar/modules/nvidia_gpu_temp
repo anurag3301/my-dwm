@@ -3,8 +3,8 @@
 # Gets temperature of the GPU
 # Dependencies: nvidia drivers and nvidia-settings
 
-PREFIX=' '
-FIRE=' '
+PREFIX='󰏈 '
+FIRE='󱗗 '
 
 WARNING_LEVEL=80
 
