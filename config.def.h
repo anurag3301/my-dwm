@@ -10,8 +10,8 @@ static const int focusonwheel       = 0;
 static const int horizpadbar        = 0;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 7;        /* vertical padding for statusbar */
 static const Gap default_gap        = {.isgap = 1, .realgap = 10, .gappx = 10};
-static const char *fonts[]          = {"JetBrainsMono Nerd Font:size=13"};
-static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=12";
+static const char *fonts[]          = {"JetBrainsMono Nerd Font:size=11"};
+static const char dmenufont[]       = "JetBrainsMono Nerd Font:size=10";
 static const char col_gray1[]       = "#282a36";
 static const char col_gray2[]       = "#282a36";
 static const char col_gray3[]       = "#96b5b4";
@@ -43,7 +43,7 @@ static const char *colors[][3]      = {
 };
 
 /* staticstatus */
-static const int statmonval = 0;
+static const int statmonval = 1;
 
 /* tagging */
 static const char *tags[] = { " ", " ", " ", " ", " ", "󰝆 ", " ", "󰙯 ", " "};
@@ -54,13 +54,13 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class         instance    title       tags mask    iscentered    isfloating   monitor */
-  { "discord",         NULL,       NULL,       1 << 7,         0,           0,            0},
-  { "Steam",           NULL,       NULL,       1 << 6,         0,           0,            0},
-  { "whatsapp-nativefier-d40211",NULL,NULL,    1 << 7,         0,           0,            1},
-  { "Spotify",         NULL,       NULL,       1 << 8,         0,           0,            1},
-  { "kdeconnect.app",  NULL,       NULL,       1 << 7,         0,           0,            1},
-  { "Xournalpp",       NULL,       NULL,       1 << 8,         0,           0,            0},
-  { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,            1},
+  { "discord",         NULL,       NULL,       1 << 7,         0,           0,            1},
+  { "Steam",           NULL,       NULL,       1 << 6,         0,           0,            1},
+  { "whatsapp-nativefier-d40211",NULL,NULL,    1 << 7,         0,           0,            0},
+  { "Spotify",         NULL,       NULL,       1 << 8,         0,           0,            0},
+  { "kdeconnect.app",  NULL,       NULL,       1 << 7,         0,           0,            0},
+  { "Xournalpp",       NULL,       NULL,       1 << 8,         0,           0,            1},
+  { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,            0},
 };
 
 /* layout(s) */
