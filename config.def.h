@@ -56,11 +56,10 @@ static const Rule rules[] = {
 	/* class         instance    title       tags mask    iscentered    isfloating   monitor */
   { "discord",         NULL,       NULL,       1 << 7,         0,           0,            1},
   { "Steam",           NULL,       NULL,       1 << 6,         0,           0,            1},
-  { "whatsapp-nativefier-d40211",NULL,NULL,    1 << 7,         0,           0,            0},
   { "Spotify",         NULL,       NULL,       1 << 8,         0,           0,            0},
   { "kdeconnect.app",  NULL,       NULL,       1 << 7,         0,           0,            0},
-  { "Xournalpp",       NULL,       NULL,       1 << 8,         0,           0,            1},
   { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,            0},
+  { "Com.github.xournalpp.xournalpp",         NULL,       NULL,       1 << 8,         0,           0,            1},
 };
 
 /* layout(s) */
