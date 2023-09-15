@@ -56,7 +56,7 @@ static const Rule rules[] = {
 	 */
 	/* class         instance    title       tags mask    iscentered    isfloating   monitor */
   { "discord",         NULL,       NULL,       1 << 7,         0,           0,       0^monitor},
-  { "Steam",           NULL,       NULL,       1 << 6,         0,           0,       0^monitor},
+  { "steam",           "steam",    "Steam",    1 << 6,         0,           0,       0^monitor},
   { "Spotify",         NULL,       NULL,       1 << 8,         0,           0,       1^monitor},
   { "kdeconnect.app",  NULL,       NULL,       1 << 7,         0,           0,       1^monitor},
   { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,       1^monitor},
