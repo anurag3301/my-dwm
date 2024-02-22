@@ -54,13 +54,13 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance    title       tags mask    iscentered    isfloating   monitor */
-  { "discord",         NULL,       NULL,       1 << 7,         0,           0,       0^monitor},
-  { "steam",           "steam",    "Steam",    1 << 6,         0,           0,       0^monitor},
-  { "Spotify",         NULL,       NULL,       1 << 8,         0,           0,       1^monitor},
-  { "kdeconnect.app",  NULL,       NULL,       1 << 7,         0,           0,       1^monitor},
-  { "thunderbird",     NULL,       NULL,       1 << 6,         0,           0,       1^monitor},
-  { "Com.github.xournalpp.xournalpp",NULL,NULL,1 << 8,         0,           0,       0^monitor},
+	/* class         instance    title       tags mask    isfloating   monitor */
+  { "discord",         NULL,       NULL,       1 << 7,        0,       0^monitor},
+  { "steam",           "steam",    "Steam",    1 << 6,        0,       0^monitor},
+  { "Spotify",         NULL,       NULL,       1 << 8,        0,       1^monitor},
+  { "kdeconnect.app",  NULL,       NULL,       1 << 7,        0,       1^monitor},
+  { "thunderbird",     NULL,       NULL,       1 << 6,        0,       1^monitor},
+  { "Com.github.xournalpp.xournalpp",NULL,NULL,1 << 8,        0,       0^monitor},
 };
 
 /* layout(s) */
