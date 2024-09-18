@@ -13,7 +13,6 @@ get_volume(){
 	then
 		VOLUME_ON_ICON='󰂯'
 		VOLUME_MUTED_ICON='󰂲'
-        BT_DEVICE="$(wpctl status | grep -zoP '(?<=Sinks:)(?s).*?(?=├─)' | grep -a '*' | sed -E 's/^[^0-9]*[0-9]+\. ([^[]+)\s*\[.*$/\1/')"
     elif [ "$curr_device" = $speakers ]
 	then
 		VOLUME_ON_ICON=''
@@ -27,9 +26,9 @@ get_volume(){
 
         if [ "${curStatus}" = 'MUTED' ]
         then
-            printf "\x09%s %s %s\x01\\n" "$VOLUME_MUTED_ICON" $BT_DEVICE "MUTE"
+            printf "\x09%s %s %s\x01\\n" "$VOLUME_MUTED_ICON"  "MUTE"
         else
-            printf "\x09%s %s %s\x01\\n"  "$VOLUME_ON_ICON" $BT_DEVICE "$volume%"
+            printf "\x09%s %s %s\x01\\n"  "$VOLUME_ON_ICON" "$volume%"
         fi
 }
 

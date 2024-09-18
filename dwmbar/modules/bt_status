@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Gets temperature of the CPU
+# Dependencies: lm_sensors
+
+BT_OFF='󰂲 '
+BT_ON='󰂯 '
+BT_CONNECTED='󰂱 '
+check_first_connected_device() {
+    local mac
+    local device_name
+    local connection_status
+
+    bluetoothctl devices | while read -r line; do
+        mac=$(echo "$line" | awk '{print $2}')
+        
+        connection_status=$(bluetoothctl info "$mac" | grep "Connected" | awk '{print $2}')
+        device_name=$(bluetoothctl info "$mac" | grep "Name" | awk -F 'Name: ' '{print $2}')
+        
+        if [ "$connection_status" = 'yes' ]; then
+            echo "$device_name"
+            return
+        fi
+    done
+}
+
+get_btinfo() {
+    local BT_POWER
+    local connected_device
+
+    BT_POWER="$(bluetoothctl show | grep 'Powered' | awk '{print $2}')"
+
+    if [ "$BT_POWER" = 'yes' ]; then
+        connected_device=$(check_first_connected_device)
+        if [ "$connected_device" = '' ]; then
+            printf "\x07%s%s\x01\\n" "$BT_ON" "ON"
+        else
+            printf "\x07%s%s\x01\\n" "$BT_CONNECTED" "$connected_device"
+        fi
+    else
+        printf "\x07%s%s\x01\\n" "$BT_OFF" "OFF"
+    fi
+}
+
+get_btinfo
+
