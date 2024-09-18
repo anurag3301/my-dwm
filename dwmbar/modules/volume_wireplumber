@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Prints out the volume percentage
+
+get_volume(){
+    speakers="alsa_output.pci-0000_06_00.1.hdmi-stereo"
+    headphone="alsa_output.pci-0000_08_00.4.analog-stereo"
+    bluetooth="bluez_output.F4_4E_FD_B3_72_BC.a2dp-sink"
+
+    curr_device="$(wpctl status -n | grep -zoP '(?<=Sinks:)(?s).*?(?=├─)' | grep -a '*' | awk '{print ($4)}')"
+
+    if [[ "$curr_device" == bluez_output* ]]
+	then
+		VOLUME_ON_ICON='󰂯'
+		VOLUME_MUTED_ICON='󰂲'
+        BT_DEVICE="$(wpctl status | grep -zoP '(?<=Sinks:)(?s).*?(?=├─)' | grep -a '*' | sed -E 's/^[^0-9]*[0-9]+\. ([^[]+)\s*\[.*$/\1/')"
+    elif [ "$curr_device" = $speakers ]
+	then
+		VOLUME_ON_ICON=''
+		VOLUME_MUTED_ICON='󰝟'
+	else
+		VOLUME_ON_ICON='󰋋'
+		VOLUME_MUTED_ICON='󰟎'
+	fi
+        curStatus=$(wpctl status -n | grep -zoP '(?<=Sinks:)(?s).*?(?=├─)' | grep -a '*' | awk '{print ($7)}'| sed 's/\]$//' )
+        volume=$(wpctl status -n | grep -zoP '(?<=Sinks:)(?s).*?(?=├─)' | grep -a '*' | awk '{print ($6)}'| sed 's/\]$//' | awk '{print $1 * 100}')
+
+        if [ "${curStatus}" = 'MUTED' ]
+        then
+            printf "\x09%s %s %s\x01\\n" "$VOLUME_MUTED_ICON" $BT_DEVICE "MUTE"
+        else
+            printf "\x09%s %s %s\x01\\n"  "$VOLUME_ON_ICON" $BT_DEVICE "$volume%"
+        fi
+}
+
+get_volume
