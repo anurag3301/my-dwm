@@ -13,7 +13,14 @@ get_cputemp()
 	# CPU_T=$(cat /sys/devices/platform/coretemp.0/hwmon/hwmon?/temp2_input)
 	# CPU_TEMP=$(expr $CPU_T / 1000)
 
-	CPU_TEMP="$(sensors | grep Tctl | awk 'NR==1{gsub("+", " "); gsub("\\..", " "); print $2}')"
+	CPU_TEMP=""
+	for h in /sys/class/hwmon/hwmon*; do
+		if [ "$(cat "$h/name")" = "k10temp" ]; then
+			CPU_TEMP=$(( $(cat "$h/temp1_input") / 1000 ))
+			break
+		fi
+	done
+	[ -z "$CPU_TEMP" ] && exit 0
 
 	if [ "$CPU_TEMP" -ge $WARNING_LEVEL ]; then
 		PREFIX="$FIRE$PREFIX"

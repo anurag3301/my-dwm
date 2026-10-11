@@ -2,7 +2,7 @@
 #include <X11/XF86keysym.h>
 
 /* appearance */
-static const int monitor = 1;
+static const int monitor = 0;
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -59,6 +59,7 @@ static const Rule rules[] = {
   { "steam",           "steam",    "Steam",    1 << 6,        0,       0^monitor},
   { "Spotify",         NULL,       NULL,       1 << 8,        0,       1^monitor},
   { "kdeconnect.app",  NULL,       NULL,       1 << 7,        0,       1^monitor},
+  { "pavucontrol",     NULL,       NULL,       1 << 7,        0,       1^monitor},
   { "thunderbird",     NULL,       NULL,       1 << 6,        0,       1^monitor},
   { "Com.github.xournalpp.xournalpp",NULL,NULL,1 << 8,        0,       0^monitor},
 };
@@ -91,11 +92,11 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *web[] = {"brave", NULL};
+static const char *web[] = {"vivaldi", NULL};
 
 static const char *mute[] = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL };
-static const char *volup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
-static const char *voldown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
+static const char *volup[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+1%", NULL };
+static const char *voldown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-1%", NULL };
 
 static const char *play_pause_spotify[] = { "playerctl", "play-pause", "-p", "spotify", NULL};
 static const char *next_spotify[] = { "playerctl", "next","-p", "spotify", NULL};

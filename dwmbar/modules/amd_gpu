@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Prints AMD GPU usage, temperature and VRAM usage
+# Dependencies: amdgpu driver (reads sysfs)
+
+PREFIX='󰢮 '
+FIRE='󱗗 '
+
+WARNING_LEVEL=85
+
+get_gpu()
+{
+	DEV=""
+	for d in /sys/class/drm/card?/device; do
+		if [ "$(cat "$d/vendor" 2>/dev/null)" = "0x1002" ] && [ -f "$d/gpu_busy_percent" ]; then
+			DEV="$d"
+			break
+		fi
+	done
+	[ -z "$DEV" ] && exit 0
+
+	USAGE="$(cat "$DEV/gpu_busy_percent")"
+	VRAM_USED="$(cat "$DEV/mem_info_vram_used")"
+	VRAM_TOTAL="$(cat "$DEV/mem_info_vram_total")"
+	TEMP_FILE="$(ls "$DEV"/hwmon/hwmon*/temp1_input 2>/dev/null | head -n 1)"
+	TEMP=$(( $(cat "$TEMP_FILE") / 1000 ))
+
+	[ "$TEMP" -ge "$WARNING_LEVEL" ] && PREFIX="$FIRE$PREFIX"
+
+	VRAM=$(awk -v u="$VRAM_USED" -v t="$VRAM_TOTAL" 'BEGIN { printf "%.1f/%.0fG", u/2^30, t/2^30 }')
+
+	printf "\x05%s%s%% %s°C %s\x01\\n" "$PREFIX" "$USAGE" "$TEMP" "$VRAM"
+}
+
+get_gpu

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+TIME_FILE="$HOME/.unison/last_sync"
+
+
+display_difference() {
+  local diff=$1
+  
+  if (( diff < 60 )); then
+    printf "\x06Sync: ${diff}s\x01\\n"
+  elif (( diff < 3600 )); then
+    local minutes=$((diff / 60))
+    local seconds=$((diff % 60))
+    if (( minutes > 5)); then
+        printf "\x04Sync: ${minutes}m ${seconds}s\x01\\n"
+    else
+        printf "\x06Sync: ${minutes}m ${seconds}s\x01\\n"
+    fi
+  else
+    local hours=$((diff / 3600))
+    local minutes=$(((diff % 3600) / 60))
+    local seconds=$((diff % 60))
+    printf "\x0aSync: ${hours}h ${minutes}m ${seconds}s\x01\\n"
+  fi
+}
+
+get_lastsync(){
+    if [[ ! -f $TIME_FILE ]]; then
+      echo "File Not Found"
+      exit 1
+    fi
+
+    STORED_TIME=$(cat $TIME_FILE)
+    CURRENT_TIME=$(date +%s)
+
+    DIFFERENCE=$((CURRENT_TIME - STORED_TIME))
+    display_difference $DIFFERENCE
+}
+
+get_lastsync
