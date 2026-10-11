@@ -5,7 +5,7 @@ PREFIX=''
 
 get_date()
 {
-    printf "\x04%s %s\x01\\n" "$PREFIX" "$(date '+%d-%m-%y (%a)')"
+    printf "\x14 %s \x0c %s\x01\\n" "$PREFIX" "$(date '+%d-%m-%y (%a)')"
 }
 
 get_date

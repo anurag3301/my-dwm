@@ -6,7 +6,7 @@
 PREFIX='󰢮 '
 FIRE='󱗗 '
 
-WARNING_LEVEL=85
+WARNING_LEVEL=90
 
 get_gpu()
 {
@@ -29,7 +29,14 @@ get_gpu()
 
 	VRAM=$(awk -v u="$VRAM_USED" -v t="$VRAM_TOTAL" 'BEGIN { printf "%.1f/%.0fG", u/2^30, t/2^30 }')
 
-	printf "\x05%s%s%% %s°C %s\x01\\n" "$PREFIX" "$USAGE" "$TEMP" "$VRAM"
+	# temperature colour: green cool, yellow warm, orange hot, red critical
+	if   [ "$TEMP" -ge 90 ]; then TCOLOR='\x03'
+	elif [ "$TEMP" -ge 75 ]; then TCOLOR='\x05'
+	elif [ "$TEMP" -ge 60 ]; then TCOLOR='\x04'
+	else TCOLOR='\x06'
+	fi
+
+	printf "\x11 %s\x07 %s%% ${TCOLOR}%s°C \x0c%s\x01\\n" "$PREFIX" "$USAGE" "$TEMP" "$VRAM"
 }
 
 get_gpu

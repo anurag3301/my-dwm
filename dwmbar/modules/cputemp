@@ -26,7 +26,14 @@ get_cputemp()
 		PREFIX="$FIRE$PREFIX"
 	fi
 
-	printf "\x07%s%s\x01\\n" "$PREFIX" "$CPU_TEMP°C"
+	# green when cool, yellow warm, orange hot, red critical
+	if   [ "$CPU_TEMP" -ge 85 ]; then COLOR='\x03'; ICOLOR='\x16'
+	elif [ "$CPU_TEMP" -ge 70 ]; then COLOR='\x05'; ICOLOR='\x15'
+	elif [ "$CPU_TEMP" -ge 55 ]; then COLOR='\x04'; ICOLOR='\x13'
+	else COLOR='\x06'; ICOLOR='\x0e'
+	fi
+
+	printf "${ICOLOR} %s${COLOR} %s\x01\\n" "$PREFIX" "$CPU_TEMP°C"
 }
 
 get_cputemp

@@ -22,12 +22,14 @@ static const char col_black[]       = "#000000";
 static const char col_white[]       = "#ffffff";
 static const char col_red[]         = "#ff5370";
 static const char col_darkred[]     = "#db1616";
-static const char col_yellow[]      = "#ffee75";
+static const char col_yellow[]      = "#f1fa8c";
 static const char col_green[]       = "#c3e88d";
-static const char col_orange[]      = "#f07178";
+static const char col_orange[]      = "#ffcb6b";
 static const char col_purple[]      = "#c792ea";
 static const char col_pink[]        = "#FD9CAC";
-static const char col_blue[]        = "#89ddff";
+static const char col_blue[]        = "#82aaff";
+static const char col_cyan2[]       = "#89ddff";
+static const char col_peach[]       = "#f78c6c";
 
 static const char *colors[][3]      = {
   /*          fg         bg          border   */
@@ -41,6 +43,18 @@ static const char *colors[][3]      = {
     [SchemePink]   = { col_pink,   col_gray1,  col_gray2 },
     [Schemeblue]   = { col_blue,   col_gray1,  col_gray2 },
     [SchemeDarkRed]= { col_darkred,col_gray1,  col_gray2 },
+    [SchemeCyan]   = { col_cyan2,  col_gray1,  col_gray2 },
+    [SchemePeach]  = { col_peach,  col_gray1,  col_gray2 },
+    [SchemeSpare]  = { col_gray3,  col_gray1,  col_gray2 },
+    [SchemeIGreen] = { col_gray1, col_green, col_gray2 },
+    [SchemeIBlue] = { col_gray1, col_blue, col_gray2 },
+    [SchemeICyan] = { col_gray1, col_cyan2, col_gray2 },
+    [SchemeIPurple] = { col_gray1, col_purple, col_gray2 },
+    [SchemeIPink] = { col_gray1, col_pink, col_gray2 },
+    [SchemeIYellow] = { col_gray1, col_yellow, col_gray2 },
+    [SchemePeachI] = { col_gray1, col_peach, col_gray2 },
+    [SchemeIOrange] = { col_gray1, col_orange, col_gray2 },
+    [SchemeIRed] = { col_gray1, col_red, col_gray2 },
 };
 
 /* staticstatus */

@@ -18,15 +18,15 @@ get_song()
 
     if [ "$player_status" = "Playing" ]; then
         if [ "$artist" ]; then
-          printf "\x08%s %s - %s\x01\\n" "$PREFIX_PLAY" "$artist" "$title"
+          printf "\x12 %s\x08 %s - %s\x01\\n" "$PREFIX_PLAY" "$artist" "$title"
         else
-          printf "\x08%s %s - %s\x01\\n" "$PREFIX_PLAY" "$album" "$title"
+          printf "\x12 %s\x08 %s - %s\x01\\n" "$PREFIX_PLAY" "$album" "$title"
         fi
     else
         if [ "$artist" ]; then
-          printf "\x08%s %s - %s\x01\\n" "$PREFIX_PAUSE" "$artist" "$title"
+          printf "\x12 %s\x08 %s - %s\x01\\n" "$PREFIX_PAUSE" "$artist" "$title"
         else
-          printf "\x08%s %s - %s\x01\\n" "$PREFIX_PAUSE" "$album" "$title"
+          printf "\x12 %s\x08 %s - %s\x01\\n" "$PREFIX_PAUSE" "$album" "$title"
         fi
     fi
 

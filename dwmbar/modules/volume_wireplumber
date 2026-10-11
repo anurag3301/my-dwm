@@ -26,9 +26,9 @@ get_volume(){
 
         if [ "${curStatus}" = 'MUTED' ]
         then
-            printf "\x09%s %s %s\x01\\n" "$VOLUME_MUTED_ICON"  "MUTE"
+            printf "\x0e %s \x06 %s\x01\\n" "$VOLUME_MUTED_ICON" "MUTE"
         else
-            printf "\x09%s %s %s\x01\\n"  "$VOLUME_ON_ICON" "$volume%"
+            printf "\x0e %s \x06 %s\x01\\n" "$VOLUME_ON_ICON" "$volume%"
         fi
 }
 
