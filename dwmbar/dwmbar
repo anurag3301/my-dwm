@@ -105,5 +105,5 @@ while :; do
 	if [ $(( 10#$date % 5 )) -eq 0 ]; then
 		INTERNET=$(check_internet)
 	fi
-	xsetroot -name "$(exec $DEFAULT_BAR_LOCATION)"
+	xsetroot -name "$(exec $DEFAULT_BAR_LOCATION 2>/dev/null)" || sleep 1
 done

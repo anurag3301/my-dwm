@@ -20,37 +20,49 @@ else
 	OUTPUT_CACHE="/home/$USER/.config/dwmbar/.cache/"
 fi
 
-source $CONFIG_FILE
+source "$CONFIG_FILE" 2>/dev/null
 
 OUTPUT=""
 
 get_bar()
 {
+	bar=""
 	for module in $MODULES; do
 		if [[ $INTERNET -eq 0 ]] || [[ $ONLINE_MODULES != *"$module"* ]];then
-			module_out="$(cat $OUTPUT_CACHE$module | sed 's/\.$//g')"
+			module_out="$(sed 's/\.$//g' "$OUTPUT_CACHE$module" 2>/dev/null)"
 			bar="$bar$module_out"
 		fi
 	done
 	# Uncomment to remove last separator
 	# bar="$(echo "$bar" | sed 's/.$//g')"
-	echo "$LEFT_PADDING${bar::-2}$RIGHT_PADDING"
+	if [[ ${#bar} -ge 2 ]]; then
+		bar="${bar::-2}"
+	fi
+	echo "$LEFT_PADDING$bar$RIGHT_PADDING"
 }
 
+# A failing, hanging or missing module only hides itself, never the whole bar
 run_module()
 {
-	if [[ -f "$CUSTOM_DIR$1" ]]
-	then
-		out="$($CUSTOM_DIR$1)"
+	local cmd out
+	if [[ -x "$CUSTOM_DIR$1" ]]; then
+		cmd="$CUSTOM_DIR$1"
 	else
-		out="$($DEFAULT_MODULES_DIR$1)"
+		cmd="$DEFAULT_MODULES_DIR$1"
 	fi
 
-	if [[ "$out" = " " ]]; then
-		echo "" > "$OUTPUT_CACHE$module"
-	elif [[ ! "$out" = "" ]]; then
-		out="$out$SEPARATOR."
-		echo "$out" > "$OUTPUT_CACHE$module"
+	if [[ ! -x "$cmd" ]]; then
+		: > "$OUTPUT_CACHE$1"
+		return
+	fi
+
+	out="$(timeout 2 "$cmd" 2>/dev/null)"
+	if [[ $? -ne 0 ]]; then
+		: > "$OUTPUT_CACHE$1"
+	elif [[ "$out" = " " ]]; then
+		: > "$OUTPUT_CACHE$1"
+	elif [[ -n "$out" ]]; then
+		echo "$out$SEPARATOR." > "$OUTPUT_CACHE$1"
 	fi
 }
 
@@ -58,7 +70,7 @@ run()
 {
 	for module in $MODULES; do
 		[[ ! -f "$OUTPUT_CACHE$module" ]] && touch "$OUTPUT_CACHE$module"
-		pgrep $module &> /dev/null
+		pgrep -x "$module" &> /dev/null
 		notrunning=$([[ $? -eq 1 ]])
 		if $notrunning && [[ $INTERNET -eq 0 ]]; then
 			run_module $module

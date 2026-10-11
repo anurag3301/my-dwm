@@ -10,7 +10,8 @@ WARNING_LEVEL=80
 
 get_gputemp()
 {
-	GPU_TEMP="$(nvidia-settings -q gpucoretemp -t | head -n 1)"
+	GPU_TEMP="$(nvidia-settings -q gpucoretemp -t 2>/dev/null | head -n 1)"
+	[[ "$GPU_TEMP" =~ ^[0-9]+$ ]] || exit 0
 
 	if [ "$GPU_TEMP" -ge $WARNING_LEVEL ]; then
 		PREFIX="$FIRE$PREFIX"
